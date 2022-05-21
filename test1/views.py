@@ -27,12 +27,14 @@ from .serializer import NotifSerializer
 class ServerAPIView(APIView):
 
     flag = 0
+    ####TODO:File chain
 
     def start(self):
         if (flag == 0):
             run();
             flag = 10;
         else:
+            print("hi")
             #TODO: ?
 
         
@@ -90,7 +92,7 @@ class ServerAPIView(APIView):
                 return fernet.decrypt(cipher_pub_key)
 
 
-    def create_new_block(self, chain):
+    def create_new_block(self, chain): #TODO data
             user = self.read_user().decode('UTF-8')
             block_data, correspond_len = self.implement_block_data()
             nonce = 0
@@ -185,7 +187,7 @@ class Check_Notif(APIView):
 
 
     def post(self, request):
-        serializer = NorifSerializer(data=request.data)
+        serializer = NotifSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
